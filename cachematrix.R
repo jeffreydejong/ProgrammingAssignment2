@@ -2,7 +2,7 @@
 ## This R script was written to complete assignment 2 in the
 ## coursera course on "Introduction to the R language
 ##
-##  Brief Summary of code : finds the inversion of a predefined matrix 
+##  Brief Summary of code : finds the inverse of a predefined matrix 
 ##
 ##   Written by : Jeffrey de Jong
 ##   Written on : 24 May, 2014
@@ -13,10 +13,10 @@
 ## Example call  >   zz<-makeCacheMatrix(matrix(c(1:4),2,2))  ## creates a matrix and associated list object
 ##               >   cacheSolve(zz)                           ## finds the inverse of the above matrix
 ##               output is a matrix object which is the inversion of the original matrix
-
+##               note:  cacheSolve(zz)%*%zz$get() returns the unit matrix (so good does work)
 
 ##  makeCacheMatrix : Takes a matrix as input, and outputs a list object containing functions 
-##                    to get/set the original matrix and its inversion
+##                    to get/set the original matrix and its inverse
 
 makeCacheMatrix <- function(x = matrix()) {
         m <- NULL           ## set solution equal to 0
@@ -26,8 +26,8 @@ makeCacheMatrix <- function(x = matrix()) {
         }
         get <- function() x  ## define get function : return the matrix associated with the list object
         setinverted <- function(inverted) m <<- inverted  # define setinverted function by passing the solution
-        getinverted <- function() m
-        list(set = set, get = get,
+        getinverted <- function() m                        # define the getinverted function(returns inverse value)
+        list(set = set, get = get,                         # return list object
              setinverted = setinverted,
              getinverted = getinverted)
 }
